@@ -1,0 +1,131 @@
+body {
+    background-color: #F8EACA;
+}
+
+nav {
+    /* width: 1383px; */
+    height: 57px;
+    top: 58px;
+    left: 29px;
+}
+
+nav ul {
+    margin-right: 120px;
+    margin-top: 45px;
+    margin-bottom: 0px;
+    padding: 0;
+    float: right;
+
+}
+
+nav ul li {
+    display: inline;
+    padding: 0 20px;
+    font-weight: 700px;
+    font-size: 32px;
+    line-height: 38.73px;
+}
+
+/* #aboutPage {
+    width: 102px;
+    height: 45px;
+    top: 11px;
+    bottom: 950px;
+} */
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+nav h1 {
+    font-size: 24px;
+    line-height: 29.05px;
+    font-weight: 700px;
+    color: #CE6D46;
+    width: 223px;
+    height: 57px;
+    /* top: 30px; */
+    margin-top: 40px;
+    left: 80px;
+    position: absolute;
+}
+
+#aboutPage {
+    width: 1383px;
+    height: 1000px;
+    top: 115px;
+    left: 29px;
+}
+
+#guitarImage {
+    width: 733px;
+    height: 571px;
+    top: 264px;
+    left: 295px;
+    padding: 50px 0px 0px 350px;
+    margin-top: 90px;
+
+
+    /* text-align: center; */
+
+}
+
+form {
+    width: 733px;
+    height: 571px;
+    top: 264px;
+    left: 295px;
+    padding: 50px 0px 0px 350px;
+    margin-top: 125px;
+    align-items: top;
+}
+
+form label {
+    display: flex;
+    align-items: left;
+    /* justify-content: flex-end; */
+    font-size: 32px;
+    font-weight: 700px;
+    line-height: 60px;
+    width: 200px;
+    margin-left: 35px;
+}
+
+form input {
+    margin-left: 10px;
+    width: 420px;
+    height: 30px;
+    border-radius: 5px;
+    background: transparent;
+    float: right;
+    margin-top: -45px; /* Add this line to move the input boxes up */
+}
+
+form button {
+    width: 200px;
+    height: 50px;
+    background-color: #CDB38C;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    margin-left: 35px;
+    font-size: 23px;
+    font-weight: 700px;
+    line-height: 29.05px;
+    float: right;
+}
+
+table {
+    table-layout: fixed;
+    width: 75%;
+    background-color: transparent;
+    margin-left: 200px;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 75%;
+    background-color: transparent;
+}

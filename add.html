@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add - Guitar Inventory Management</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <nav>
+        <h1>Guitar Inventory Management</h1>
+        <ul>
+            <li id="homePage"><a href="index.html">Home</a></li>
+            <li id="aboutPage"><a href="about.html">About</a></li>
+            <li id="searchPage"><a href="search.html">Search</a></li>
+        </ul>
+    </nav>
+
+    <form action="">
+        <label>Serial number:</label>
+        <input type="text" id="serialNumber">
+        <br>
+        <label>Price:</label>
+        <input type="text" id="price">
+        <br>
+        <label>Builder:</label>
+        <input type="text" id="builder">
+        <br>
+        <label>Model:</label>
+        <input type="text" id="model">
+        <br>
+        <label>Type:</label>
+        <input type="text" id="type">
+        <br>
+        <label>Back wood:</label>
+        <input type="text" id="backWood">
+        <br>
+        <label>Top wood:</label>
+        <input type="text" id="topWood">
+        <br>
+        <button onclick="addGuitar()">Add the guitar</button>
+
+    </form>
+
+    <script>
+        function addGuitar() {
+            let serialNumber = document.getElementById('serialNumber').value;
+            let price = document.getElementById('price').value;
+            let builder = document.getElementById('builder').value;
+            let model = document.getElementById('model').value;
+            let type = document.getElementById('type').value;
+            let backWood = document.getElementById('backWood').value;
+            let topWood = document.getElementById('topWood').value;
+
+            let guitar = {
+                serialNumber: serialNumber,
+                price: price,
+                builder: builder,
+                model: model,
+                type: type,
+                backWood: backWood,
+                topWood: topWood
+            };
+            alert("You entered: " + JSON.stringify(guitar));
+
+            // let guitars = JSON.parse(localStorage.getItem('guitars')) || [];
+            // guitars.push(guitar);
+            // localStorage.setItem('guitars', JSON.stringify(guitars));
+
+        }
+    </script>
+
+    
+</body>
+</html>
