@@ -76,7 +76,7 @@ nav h1 a {
 
 }
 
-form {
+.addForm {
     width: 733px;
     height: 571px;
     top: 264px;
@@ -86,7 +86,7 @@ form {
     align-items: top;
 }
 
-form label {
+.addForm label {
     display: flex;
     align-items: left;
     /* justify-content: flex-end; */
@@ -97,7 +97,7 @@ form label {
     margin-left: 35px;
 }
 
-form input {
+.addForm input {
     margin-left: 10px;
     width: 420px;
     height: 30px;
@@ -107,7 +107,7 @@ form input {
     margin-top: -45px; /* Add this line to move the input boxes up */
 }
 
-form button {
+.addForm button {
     width: 200px;
     height: 50px;
     background-color: #CDB38C;

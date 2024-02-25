@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add - Guitar Inventory Management</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./add.css">
 </head>
 <body>
     <nav>
-        <h1>Guitar Inventory Management</h1>
+        <h1><a href="index.html">Guitar Inventory Management</a></h1>
         <ul>
-            <li id="homePage"><a href="index.html">Home</a></li>
             <li id="aboutPage"><a href="about.html">About</a></li>
+            <li id="addPage"><a href="add.html">Add</a></li>
             <li id="searchPage"><a href="search.html">Search</a></li>
         </ul>
     </nav>
 
-    <form action="">
+    <div class="addForm">
         <label>Serial number:</label>
         <input type="text" id="serialNumber">
         <br>
@@ -38,37 +38,131 @@
         <label>Top wood:</label>
         <input type="text" id="topWood">
         <br>
-        <button onclick="addGuitar()">Add the guitar</button>
+        <button type="submit" onclick="addGuitar()">Add the guitar</button>
+    </div>
 
-    </form>
 
     <script>
-        function addGuitar() {
-            let serialNumber = document.getElementById('serialNumber').value;
-            let price = document.getElementById('price').value;
-            let builder = document.getElementById('builder').value;
-            let model = document.getElementById('model').value;
-            let type = document.getElementById('type').value;
-            let backWood = document.getElementById('backWood').value;
-            let topWood = document.getElementById('topWood').value;
+        // function addGuitar() {
+        //     let serialNumber = document.getElementById('serialNumber').value;
+        //     let price = document.getElementById('price').value;
+        //     let builder = document.getElementById('builder').value;
+        //     let model = document.getElementById('model').value;
+        //     let type = document.getElementById('type').value;
+        //     let backWood = document.getElementById('backWood').value;
+        //     let topWood = document.getElementById('topWood').value;
 
-            let guitar = {
-                serialNumber: serialNumber,
-                price: price,
-                builder: builder,
-                model: model,
-                type: type,
-                backWood: backWood,
-                topWood: topWood
+        //     let guitar = {
+        //         serialNumber: serialNumber,
+        //         price: price,
+        //         builder: builder,
+        //         model: model,
+        //         type: type,
+        //         backWood: backWood,
+        //         topWood: topWood
+        //     };
+        //     alert("You entered: " + JSON.stringify(guitar));
+
+        //     // let guitars = JSON.parse(localStorage.getItem('guitars')) || [];
+        //     // guitars.push(guitar);
+        //     // localStorage.setItem('guitars', JSON.stringify(guitars));
+
+        // }
+
+        async function addGuitar() { //Async version of addGuitar to send to the backendAPI
+            let guitarSerialNumber = document.getElementById('serialNumber').value;
+            let guitarPrice = document.getElementById('price').value;
+            let guitarBuilder = document.getElementById('builder').value.toUpperCase();
+            let guitarModel = document.getElementById('model').value;
+            let guitarType = document.getElementById('type').value.toUpperCase();
+            let guitarBackWood = document.getElementById('backWood').value.toUpperCase();
+            let guitarTopWood = document.getElementById('topWood').value.toUpperCase();
+            if (!guitarSerialNumber || !guitarPrice || !guitarBuilder || !guitarModel || !guitarType || !guitarBackWood || !guitarTopWood) { //Check if any fields are empty
+                let emptyFields = "";
+                if (!guitarSerialNumber) { //Conditionals to inform user what fields are empty
+                    emptyFields = emptyFields.concat("Serial number");
+                }
+                if (!guitarPrice) {
+                    if (emptyFields.length > 0) {
+                        emptyFields = emptyFields.concat(", ");
+                    }
+                    emptyFields = emptyFields.concat("Price");
+                }
+                if (!guitarBuilder) {
+                    if (emptyFields.length > 0) {
+                        emptyFields = emptyFields.concat(", ");
+                    }
+                    emptyFields = emptyFields.concat("Builder");
+                }
+                if (!guitarModel) {
+                    if (emptyFields.length > 0) {
+                        emptyFields = emptyFields.concat(", ");
+                    }
+                    emptyFields = emptyFields.concat("Model");
+                }
+                if (!guitarType) {
+                    if (emptyFields.length > 0) {
+                        emptyFields = emptyFields.concat(", ");
+                    }
+                    emptyFields = emptyFields.concat("Type");
+                }
+                if (!guitarBackWood) {
+                    if (emptyFields.length > 0) {
+                        emptyFields = emptyFields.concat(", ");
+                    }
+                    emptyFields = emptyFields.concat("Back wood");
+                }
+                if (!guitarTopWood) {
+                    if (emptyFields.length > 0) {
+                        emptyFields = emptyFields.concat(", ");
+                    }
+                    emptyFields = emptyFields.concat("Top wood");
+                }
+                alert("Please enter a value for: " + emptyFields + "."); //Displays alert to user
+                return;
+            }
+
+            let guitar = { //Create guitar object
+                serialNumber: guitarSerialNumber,
+                price: guitarPrice,
+                builder: guitarBuilder,
+                model: guitarModel,
+                type: guitarType,
+                backWood: guitarBackWood,
+                topWood: guitarTopWood
             };
-            alert("You entered: " + JSON.stringify(guitar));
+            // alert("You entered: " + JSON.stringify(guitar)); //Displays alert to user
 
-            // let guitars = JSON.parse(localStorage.getItem('guitars')) || [];
-            // guitars.push(guitar);
-            // localStorage.setItem('guitars', JSON.stringify(guitars));
-
+            let host = "http://localhost:8080";
+            //Send guitar to backend API
+            let request = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(guitar)
+            };
+            let response = await fetch(host + "/guitars/add", request);
+            if (response.status === 200) { //If successful, display success message
+                alert("The guitar was added to the system.");
+            } 
+            else { //If not successful, display error message
+                alert("Something went wrong. Please try again or contact the customer support team.");
+            }
         }
+
+        /*
+        In the add page when the add button is clicked the following should happen:
+            - if any of the fields is empty display an alert asking the user to enter a value for the field.
+            - If all the values are provided, send them to the backend API.
+                - if the backend sends a response declaring the task to be successfully done, 
+                    display a pop-up message to the user saying "The guitar was added to the system".
+                - if the backend sends a response declaring that an error happened on the backend server, 
+                    display a pop-up message saying "Something went wrong. Please try again or contact the customer support team."
+        */
     </script>
+
+    
 
     
 </body>
