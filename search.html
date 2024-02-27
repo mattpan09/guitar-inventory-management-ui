@@ -91,7 +91,8 @@
                 topWood: topWood
             };
 
-            let host = 'http://localhost:8080';
+            // let host = 'http://localhost:8080';
+            let host = 'https://guitarinventorymanagement-mattpan09.onrender.com';
             let guitarsResponse = await fetch(host + '/guitars/search', {
                 param: JSON.stringify(search) //Uses the search object to filter the guitars
             });
