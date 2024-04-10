@@ -13,6 +13,7 @@
             <li id="aboutPage"><a href="about.html">About</a></li>
             <li id="addPage"><a href="add.html">Add</a></li>
             <li id="searchPage"><a href="search.html">Search</a></li>
+            <li id="loginPage"><a href="login.html">Login</a></li>
         </ul>
     </nav>
 
@@ -41,7 +42,7 @@
         <button type="submit" onclick="addGuitar()">Add the guitar</button>
     </div>
 
-
+    <script src="configuration.js"></script>
     <script>
         // function addGuitar() {
         //     let serialNumber = document.getElementById('serialNumber').value;
@@ -134,16 +135,21 @@
             // alert("You entered: " + JSON.stringify(guitar)); //Displays alert to user
 
             // let host = "http://localhost:8080";
-            let host = 'https://guitarinventorymanagement-mattpan09.onrender.com';
+            let host = getHost();
             //Send guitar to backend API
             let request = {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${configuration.token()}`
                 },
                 body: JSON.stringify(guitar)
             };
             let response = await fetch(host + "/guitars/add", request);
+            if (response.status === 401) {
+                alert("Unauthorized");
+                logout();
+            }
             if (response.status === 200) { //If successful, display success message
                 alert("The guitar was added to the system.");
             } 

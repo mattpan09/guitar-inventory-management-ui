@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Guitar Inventory Management</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+    <nav>
+        <h1><a href="index.html">Guitar Inventory Management</a></h1>
+        <ul>
+            <li id="aboutPage"><a href="about.html">About</a></li>
+            <li id="addPage"><a href="add.html">Add</a></li>
+            <li id="searchPage"><a href="search.html">Search</a></li>
+            <li id="loginPage"><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <form>
+            <h2>Login</h2>
+
+            <label for="username"><b>Username</b></label>
+            <input type="text" id="username" placeholder="Username" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" id="password" placeholder="Password" required>
+            <br>
+
+            <input type="button" onclick="login()" value="Login">
+
+            <p><a href="register.html">New? Register here.</a></p>
+        </form>
+        
+    </div>
+
+
+    <script src="configuration.js"></script>
+
+</body>
+</html>

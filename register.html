@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Guitar Inventory Management</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+    <nav>
+        <h1><a href="index.html">Guitar Inventory Management</a></h1>
+        <ul>
+            <li id="aboutPage"><a href="about.html">About</a></li>
+            <li id="addPage"><a href="add.html">Add</a></li>
+            <li id="searchPage"><a href="search.html">Search</a></li>
+            <li id="loginPage"><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <form>
+            <h2>Register</h2>
+
+            <div class="registerPage">
+                <label for="email"><b>Email</b></label>
+                <input type="text" id="email" placeholder="Enter Email" required>
+
+                <label for="username"><b>Username</b></label>
+                <input type="text" id="username" placeholder="Enter Username" required>
+
+                <label for="password"><b>Password</b></label>
+                <input type="password" id="password" placeholder="Enter Password" required>
+                <br>
+            </div>
+
+            <input type="button" onclick="signup()" value="Sign Up">
+
+            <p><a href="login.html">Already have an account? Login here.</a></p>
+        </form>
+        
+    </div>
+
+    <script src="configuration.js"></script>
+    <script src="register.js"></script>
+    
+</body>
+</html>

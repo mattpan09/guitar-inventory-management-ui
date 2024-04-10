@@ -13,6 +13,7 @@
             <li id="aboutPage"><a href="about.html">About</a></li>
             <li id="addPage"><a href="add.html">Add</a></li>
             <li id="searchPage"><a href="search.html">Search</a></li>
+            <li id="loginPage"><a href="login.html">Login</a></li>
         </ul>
     </nav>
 
@@ -52,6 +53,7 @@
         </tbody>
     </table>
     
+    <script src="configuration.js"></script>
     <script>
         // let guitars = [
         //     {
@@ -92,12 +94,27 @@
             };
 
             // let host = 'http://localhost:8080';
-            let host = 'https://guitarinventorymanagement-mattpan09.onrender.com';
+            let host = getHost();
+            const headers = {
+                "Authorization": `Bearer ${configuration.token()}`
+            };
+            // let guitarsResponse = await fetch(host + '/guitars/search', {
+            //     param: JSON.stringify(search), //Uses the search object to filter the guitars
+                
+            // });
+
             let guitarsResponse = await fetch(host + '/guitars/search', {
-                param: JSON.stringify(search) //Uses the search object to filter the guitars
+                headers: headers,
+                param: JSON.stringify(search)
             });
+
+
             console.log(guitarsResponse.status);
-            if (!(guitarsResponse.status === 200)) {
+            if (guitarsResponse.status === 401) {
+                alert('Unauthorized');
+                logout();
+            }
+            else if (!(guitarsResponse.status === 200)) {
                 alert('An error occurred while fetching the guitars');
                 return;
             }
